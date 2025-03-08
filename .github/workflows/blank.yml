@@ -1,0 +1,24 @@
+import telebot
+
+bot = telebot.TeleBot('7690148506:AAHsJJpSJZC748dzCmmnLon--pr_yjfnLjk')
+
+
+@bot.message_handler(commands=['start'])
+def handle_start(message):
+    bot.reply_to(message, 'Привет это подарки на пасху от wildberis напиши /help для подрбной информации ')
+
+
+@bot.message_handler(content_types=['text', 'photo', 'sticker'])
+def handle_message(message):
+    if message.text == '/help':
+        bot.send_message(message.chat.id, 'Привет! перейди по ссылке в канал https://t.me/+CJMyrv6aQQxlZmUy и следуй дальнейшим инструкциям')
+
+    if message.photo:
+        bot.send_message(message.chat.id, 'окей скоро наш  менеджер пришлёт тебе кружок.')
+
+    if message.video:
+        bot.send_message(message.chat.id, 'жди сейчас скоро менеджер обработает видео и скинет кружок.')
+
+
+bot.polling()
+ 
